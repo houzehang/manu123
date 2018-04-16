@@ -1,0 +1,255 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 137.0,
+		"last_filter": "installpac",
+		"selected_items":
+		[
+			[
+				"installpac",
+				"Package Control: Install Package"
+			],
+			[
+				"paal",
+				"Install Package Control"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/DevPro/Desktop/TEST.js",
+		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/DocBlockr/README.md",
+		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/User/test.js",
+		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/DocBlockr/LICENSE",
+		"/E/sxjj/src/sxjj/scene/sequent/Sequent.js",
+		"/E/FTP/index.html",
+		"/E/FTP/js/matrix.js",
+		"/E/FTP/test.html",
+		"/E/FTP/ztype.js",
+		"/E/FTP/temp_ztype.js",
+		"/D/测试/index.html",
+		"/E/sxjj/frameworks/cocos2d-x/cocos/2d/CCLayer.cpp",
+		"/C/Users/DevPro/AppData/Local/FireBirdJS/res/record/recordlast.json",
+		"/F/ExclToJson/meta_sxjj/output/json/tutorial.json",
+		"/E/sxjj/src/sxjj/scene/arena/test.js",
+		"/E/sxjj/res/layout/gamemission/GameMissionFightScene - 副本.json",
+		"/E/FTP/sftp-config.json",
+		"/E/FTP/res/config/webset.json"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"码奴导航",
+			"系统",
+			"form",
+			"welcome",
+			"menu_a",
+			"impac",
+			"made-with-impact",
+			"drawTitle",
+			"fontTitle",
+			"打",
+			"打飞",
+			"font",
+			"getWordWithLength",
+			"WORDS",
+			"phobos",
+			"stars",
+			"start",
+			"stars",
+			"radi",
+			"stars",
+			"maxStars",
+			"timePassed",
+			"maxStars",
+			"closePath",
+			"fillStyle",
+			"liuxing",
+			"WINDOW_WIDTH",
+			"offsetWidth",
+			"WINDOW_WIDTH",
+			"render",
+			"setInterval",
+			"render",
+			"addStar",
+			"画板id",
+			"le.log('kill",
+			"soundHit",
+			"kill",
+			"soundShoot.play",
+			"soundExplode",
+			"kill",
+			"ononon",
+			"soundExplode",
+			"shoot",
+			"bullet",
+			"false",
+			"_accelerometerEnabled",
+			"set",
+			"Translate",
+			"translate",
+			"titlepanel",
+			"导航",
+			"Î¢ÈíÑÅºÚ",
+			"664",
+			"775",
+			"664"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 668.0
+	},
+	"pinned_build_system": "",
+	"project": "ftp.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"zt",
+				"ztype.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 256.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

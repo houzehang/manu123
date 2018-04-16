@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>一起来看流星雨</title>
+    <script>
+      var context;
+      var arr = new Array();
+      var starCount = 800;
+      var rains = new Array();
+      var rainCount =20;
+      //初始化画布及context
+      function init(){
+        //获取canvas
+        var stars = document.getElementById("stars");
+        windowWidth = window.innerWidth; //当前的窗口的高度
+        stars.width=windowWidth;
+        stars.height=window.innerHeight;
+        //获取context
+        context = stars.getContext("2d");
+      }
+      //创建一个星星对象
+      var Star = function (){
+        this.x = windowWidth * Math.random();//横坐标
+        this.y = 5000 * Math.random();//纵坐标
+        this.text=".";//文本
+        this.color = "white";//颜色
+        //产生随机颜色
+        this.getColor=function(){
+          var _r = Math.random();
+          if(_r<0.5){
+            this.color = "#333";
+          }else{
+            this.color = "white";
+          }
+        }
+        //初始化
+        this.init=function(){
+          this.getColor();
+        }
+        //绘制
+        this.draw=function(){
+          context.fillStyle=this.color;
+          context.fillText(this.text,this.x,this.y);
+        }
+      }
+       //画月亮
+      function drawMoon(){
+         var moon = new Image();
+           moon.src = "./images/moon.jpg"
+           context.drawImage(moon,-5,-10);
+      }
+      //页面加载的时候
+      window.onload = function() {
+        init();
+        //画流星
+        for (var i=0;i<rainCount;i++) {
+          var rain = new MeteorRain();
+          rain.init();
+          rain.draw();
+          rains.push(rain);
+        }
+        playRains();//绘制流星
+
+      }
+
+        /*流星雨开始*/
+       var MeteorRain = function(){
+         this.x = -1;
+         this.y = -1;
+         this.length = -1;//长度
+         this.angle = 30; //倾斜角度
+         this.width = -1;//宽度
+         this.height = -1;//高度
+         this.speed = 1;//速度
+         this.offset_x = -1;//横轴移动偏移量
+         this.offset_y = -1;//纵轴移动偏移量
+         this.alpha = 1; //透明度
+         this.color1 = "";//流星的色彩
+         this.color2 = ""; //流星的色彩
+        /****************初始化函数********************/
+        this.init = function () //初始化
+        {
+          this.getPos();
+          this.alpha = 1;//透明度
+          this.getRandomColor();
+          //最小长度，最大长度
+          var x = Math.random() * 80 + 350;
+          this.length = Math.ceil(x);
+      //         x = Math.random()*10+30;
+          this.angle = 60; //流星倾斜角
+          x = Math.random()+0.5;
+          this.speed = Math.ceil(x); //流星的速度
+          var cos = Math.cos(this.angle*3.14/180);
+          var sin = Math.sin(this.angle*3.14/180) ;
+          this.width = this.length*cos ; //流星所占宽度
+          this.height = this.length*sin ;//流星所占高度
+          this.offset_x = this.speed*cos ;
+          this.offset_y = this.speed*sin;
+        }
+        /**************获取随机颜色函数*****************/
+        this.getRandomColor = function (){
+          var a = Math.ceil(255-240* Math.random()); 
+          //中段颜色
+          this.color1 = "rgba("+a+","+a+","+a+",1)";
+          //结束颜色
+          this.color2 = "black";
+        }
+         /***************重新计算流星坐标的函数******************/
+        this.countPos = function ()//
+        {
+          //往左下移动,x减少，y增加
+          this.x = this.x - this.offset_x;
+          this.y = this.y + this.offset_y;
+        }
+        /*****************获取随机坐标的函数*****************/
+        this.getPos = function () //
+        {
+          //横坐标200--1200
+          this.x = Math.random() * window.innerWidth; //窗口高度
+          //纵坐标小于600
+          this.y = Math.random() * window.innerHeight; //窗口宽度
+        }
+         /****绘制流星***************************/
+        this.draw = function () //绘制一个流星的函数
+        {
+          context.save();
+          context.beginPath();
+          context.lineWidth = 1; //宽度
+          context.globalAlpha = this.alpha; //设置透明度
+          //创建横向渐变颜色,起点坐标至终点坐标
+          var line = context.createLinearGradient(this.x, this.y, 
+            this.x + this.width, 
+            this.y - this.height);
+          //分段设置颜色
+          line.addColorStop(0, "white");
+          line.addColorStop(0.3, this.color1);
+          line.addColorStop(0.6, this.color2);
+          context.strokeStyle = line;
+          //起点
+          context.moveTo(this.x, this.y);
+          //终点
+          context.lineTo(this.x + this.width, this.y - this.height);
+          context.closePath();
+          context.stroke();
+          context.restore();
+        }
+        this.move = function(){
+          //清空流星像素
+          var x = this.x+this.width-this.offset_x;
+          var y = this.y-this.height;
+          context.clearRect(x-3,y-3,this.offset_x+5,this.offset_y+5); 
+      //         context.strokeStyle="red";
+      //         context.strokeRect(x,y-1,this.offset_x+1,this.offset_y+1);
+          //重新计算位置，往左下移动
+          this.countPos();
+          //透明度增加
+          this.alpha -= 0.002;
+          //重绘
+          this.draw(); 
+        }
+      }
+      //绘制流星
+      function playRains(){
+
+        for (var n = 0; n < rainCount; n++){ 
+          var rain = rains[n];
+          rain.move();//移动
+          if(rain.y>window.innerHeight){//超出界限后重来
+            context.clearRect(rain.x,rain.y-rain.height,rain.width,rain.height);
+            rains[n] = new MeteorRain();
+            rains[n].init();
+          }
+        } 
+        setTimeout("playRains()",4);
+      }
+       /*流星雨结束*/
+    </script>
+
+    <style type="text/css">
+      html,body{background-color:#000;/*background-image:url(phobos.png);*/background-position:54px 105px;background-attachment:fixed;background-repeat:no-repeat;color:#fff;font-family:helvetica,arial,sans-serif;margin:0;padding:0;font-size:12pt;height:100%}
+      a{color:#06c}
+      img{border:0}
+
+      h3{ text-align:center}
+      #canvas{border:1pxsolid #555;position:absolute;left:0;top:0;width:360px;height:640px;background-color:#000;border-radius: 30px;box-shadow:0 0 30px #357;}
+      #game{position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:360px;height:640px;border-radius: 30px;box-shadow:0 0 30px #357;}
+      #nocanvas{width:360px;margin:150px auto}
+
+      #ad{width:160px;height:600px;position:absolute;left:32px;top:0;bottom:0;margin:auto}
+      #overlay{position:absolute;left:0;right:0;top:0;bottom:0;background-color:#222;background-color:rgba(0,0,0,0.8);text-align:center}
+      .header{
+        margin:0;
+        width:100%;
+        height:100%;
+        position:relative;
+        }
+      .header .canvas33 {
+        margin:0;
+        width:100%;height:100%;
+        display:inline-block;vertical-align:baseline;
+        position:absolute;
+        z-index:-1;
+        }
+
+    </style>
+  </head>
+  <body>
+    <canvas id="stars"></canvas>
+    <div class="header" id="demo">
+      <canvas id="canvas33"></canvas> 
+    </div>
+  </body>
+  <script type="text/javascript" src="ztype.js"></script>
+  <script type="text/javascript">
+  window.initGame=function(){
+    document.getElementById('ad').style.display='block';
+    var overlay=document.getElementById('overlay');
+    if(overlay){
+      overlay.style.display='none';
+    }
+    ig.module('start').requires('game.main').defines(function(){
+      ZType.startGame();
+    });
+    return false;
+  }
+  </script>
+
+  
+<!-- <h3>输入对应掉下来的字符</h3> -->
+<div id="ad" style="display: block;"></div>
+
+<div id="game"> 
+
+  <canvas style="cursor: auto;" height="640" width="360" id="canvas">
+  <div id="nocanvas"> 想玩这款游戏？你需要有个不错的浏览器.</div>
+  </canvas>
+
+</div>
+
+<script>
+//宇宙特效
+"use strict";
+var canvas = document.getElementById('canvas33'),
+  ctx = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+
+  hue = 217,
+  stars = [],
+  count = 0,
+  maxStars = 2000;//星星数量
+
+var canvas2 = document.createElement('canvas'),
+  ctx2 = canvas2.getContext('2d');
+canvas2.width = 100;
+canvas2.height = 100;
+var half = canvas2.width / 2,
+  gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+gradient2.addColorStop(0.025, '#CCC');
+gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+gradient2.addColorStop(1, 'transparent');
+
+ctx2.fillStyle = gradient2;
+ctx2.beginPath();
+ctx2.arc(half, half, half, 0, Math.PI * 2);
+ctx2.fill();
+
+// End cache
+
+function random(min, max) {
+  if (arguments.length < 2) {
+    max = min;
+    min = 0;
+  }
+
+  if (min > max) {
+    var hold = max;
+    max = min;
+    min = hold;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function maxOrbit(x, y) {
+  var max = Math.max(x, y),
+    diameter = Math.round(Math.sqrt(max * max + max * max));
+  return diameter / 2;
+  //星星移动范围，值越大范围越小，
+}
+
+var Star = function() {
+
+  this.orbitRadius = random(maxOrbit(w, h));
+  this.radius = random(60, this.orbitRadius) / 20; 
+  //星星大小
+  this.orbitX = w / 2;
+  this.orbitY = h / 2;
+  this.timePassed = random(0, maxStars);
+  this.speed = random(this.orbitRadius) / 1500000; 
+  //星星移动速度
+  this.alpha = random(2, 10) / 10;
+
+  count++;
+  stars[count] = this;
+}
+
+Star.prototype.draw = function() {
+  var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+    y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+    twinkle = random(10);
+
+  if (twinkle === 1 && this.alpha > 0) {
+    this.alpha -= 0.05;
+  } else if (twinkle === 2 && this.alpha < 1) {
+    this.alpha += 0.05;
+  }
+
+  ctx.globalAlpha = this.alpha;
+  ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  this.timePassed += this.speed;
+}
+
+for (var i = 0; i < maxStars; i++) {
+  new Star();
+}
+
+function animation() {
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 0.5; //尾巴
+  ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
+  ctx.fillRect(0, 0, w, h)
+
+  ctx.globalCompositeOperation = 'lighter';
+  for (var i = 1, l = stars.length; i < l; i++) {
+    stars[i].draw();
+  };
+
+  window.requestAnimationFrame(animation);
+}
+
+animation();
+</script>
+
+<script type="text/javascript">window.initGame();</script>
+</html>

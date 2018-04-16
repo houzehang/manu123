@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Manu123</title>
+
+
+<style type="text/css">
+  html,body{background-color:#25272b;/*background-image:url(phobos.png);*/background-position:54px 105px;background-attachment:fixed;background-repeat:no-repeat;color:#fff;font-family:helvetica,arial,sans-serif;margin:0;padding:0;font-size:12pt;height:100%}
+  a{color:#06c}
+  img{border:0}
+
+  h3{ text-align:center}
+  #canvas{border:1pxsolid #555;position:absolute;left:0;top:0;width:360px;height:640px;background-color:#000;border-radius: 30px;box-shadow:0 0 30px #357;}
+  #game{position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:360px;height:640px;border-radius: 30px;box-shadow:0 0 30px #357;}
+  #nocanvas{width:360px;margin:150px auto}
+
+  #ad{width:160px;height:600px;position:absolute;left:32px;top:0;bottom:0;margin:auto}
+  #overlay{position:absolute;left:0;right:0;top:0;bottom:0;background-color:#222;background-color:rgba(0,0,0,0.8);text-align:center}
+  .header{
+  	margin:0;
+  	width:100%;
+  	height:100%;
+  	position:relative;
+  	}
+  .header .canvas33 {
+    margin:0;
+  	width:100%;height:100%;
+  	display:inline-block;vertical-align:baseline;
+  	position:absolute;
+  	z-index:-1;
+  	}
+
+</style>
+
+
+<div class="header" id="demo">
+  <canvas id="canvas33"></canvas> 
+</div>
+
+<script type="text/javascript" src="ztype.js"></script>
+<script type="text/javascript">
+window.initGame=function(){
+	document.getElementById('ad').style.display='block';
+	var overlay=document.getElementById('overlay');
+	if(overlay){
+		overlay.style.display='none';
+	}
+	ig.module('start').requires('game.main').defines(function(){
+		ZType.startGame();
+	});
+	return false;
+}
+</script> 
+
+</head>
+<body>
+
+<!-- <h3>输入对应掉下来的字符</h3> -->
+<div id="ad" style="display: block;"></div>
+
+<div id="game"> 
+
+	<canvas style="cursor: auto;" height="640" width="360" id="canvas">
+	<div id="nocanvas"> 想玩这款游戏？你需要有个不错的浏览器.</div>
+	</canvas>
+
+</div>
+
+<script>
+//宇宙特效
+"use strict";
+var canvas = document.getElementById('canvas33'),
+  ctx = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+
+  hue = 217,
+  stars = [],
+  count = 0,
+  maxStars = 2000;//星星数量
+
+var canvas2 = document.createElement('canvas'),
+  ctx2 = canvas2.getContext('2d');
+canvas2.width = 100;
+canvas2.height = 100;
+var half = canvas2.width / 2,
+  gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+gradient2.addColorStop(0.025, '#CCC');
+gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+gradient2.addColorStop(1, 'transparent');
+
+ctx2.fillStyle = gradient2;
+ctx2.beginPath();
+ctx2.arc(half, half, half, 0, Math.PI * 2);
+ctx2.fill();
+
+// End cache
+
+function random(min, max) {
+  if (arguments.length < 2) {
+    max = min;
+    min = 0;
+  }
+
+  if (min > max) {
+    var hold = max;
+    max = min;
+    min = hold;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function maxOrbit(x, y) {
+  var max = Math.max(x, y),
+    diameter = Math.round(Math.sqrt(max * max + max * max));
+  return diameter / 2;
+  //星星移动范围，值越大范围越小，
+}
+
+var Star = function() {
+
+  this.orbitRadius = random(maxOrbit(w, h));
+  this.radius = random(60, this.orbitRadius) / 20; 
+  //星星大小
+  this.orbitX = w / 2;
+  this.orbitY = h / 2;
+  this.timePassed = random(0, maxStars);
+  this.speed = random(this.orbitRadius) / 1500000; 
+  //星星移动速度
+  this.alpha = random(2, 10) / 10;
+
+  count++;
+  stars[count] = this;
+}
+
+Star.prototype.draw = function() {
+  var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+    y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+    twinkle = random(10);
+
+  if (twinkle === 1 && this.alpha > 0) {
+    this.alpha -= 0.05;
+  } else if (twinkle === 2 && this.alpha < 1) {
+    this.alpha += 0.05;
+  }
+
+  ctx.globalAlpha = this.alpha;
+  ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  this.timePassed += this.speed;
+}
+
+for (var i = 0; i < maxStars; i++) {
+  new Star();
+}
+
+function animation() {
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 0.5; //尾巴
+  ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
+  ctx.fillRect(0, 0, w, h)
+
+  ctx.globalCompositeOperation = 'lighter';
+  for (var i = 1, l = stars.length; i < l; i++) {
+    stars[i].draw();
+  };
+
+  window.requestAnimationFrame(animation);
+}
+
+animation();
+</script>
+
+<script type="text/javascript">window.initGame();</script>
+
+</body>
+</html>
