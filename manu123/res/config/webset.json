@@ -22,7 +22,7 @@
 			,{"name":"前端乱炖","href":"http://www.html-js.com/"}
 			,{"name":"Node.js社区","href":"http://cnodejs.org/"}
 			,{"name":"Segmentfault","href":"https://segmentfault.com/"}
-			,{"name":"安卓巴士","href":"http://www.apkbus.com/"}
+			,{"name":"知乎","href":"https://www.zhihu.com/"}
 			,{"name":"博客园","href":"https://www.cnblogs.com/"}
 			,{"name":"开源中国","href":"http://www.oschina.net/"}
 		]
@@ -46,12 +46,21 @@
 		"list":[
 			{"name":"爱给网","href":"http://www.aigei.com/"}
 			,{"name":"包图网","href":"http://ibaotu.com/"}
+			,{"name":"包图网","href":"http://ibaotu.com/"}
 		]
 	},
 	"kind5":{
-		"title":"交 流",
+		"title":"源 码",
 		"list":[
-			{"name":"知乎","href":"https://www.zhihu.com/"}
+			{"name":"jquery插件库","href":"http://www.jq22.com/"}
+			,{"name":"源码之家","href":"http://www.mycodes.net/"}
+			,{"name":"随便撸","href":"http://www.suibianlu.com/"}
+		]
+	},
+	"kind6":{
+		"title":"设 计",
+		"list":[
+			{"name":"设计导航","href":"http://hao.shejidaren.com/"}
 		]
 	}
 }
