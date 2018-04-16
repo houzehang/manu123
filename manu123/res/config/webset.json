@@ -42,7 +42,14 @@
 		]
 	},
 	"kind4":{
-		"title":"聊 天",
+		"title":"素 材",
+		"list":[
+			{"name":"爱给网","href":"http://www.aigei.com/"}
+			,{"name":"包图网","href":"http://ibaotu.com/"}
+		]
+	},
+	"kind5":{
+		"title":"交 流",
 		"list":[
 			{"name":"知乎","href":"https://www.zhihu.com/"}
 		]
