@@ -48,11 +48,17 @@
 	},
 	"expanded_folders":
 	[
-		"/E/FTP"
+		"/E/FTP",
+		"/E/FTP/manu123"
 	],
 	"file_history":
 	[
+		"/E/FTP/login.html",
+		"/E/FTP/manu123/index.html",
+		"/E/FTP/sftp-config.json",
+		"/E/FTP/manu123/ftp.sublime-project",
 		"/E/FTP/index.html",
+		"/E/FTP/manu123/sftp-config.json",
 		"/C/Users/DevPro/Desktop/TEST.js",
 		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
 		"/C/Users/DevPro/AppData/Roaming/Sublime Text 3/Packages/DocBlockr/README.md",
@@ -69,7 +75,6 @@
 		"/F/ExclToJson/meta_sxjj/output/json/tutorial.json",
 		"/E/sxjj/src/sxjj/scene/arena/test.js",
 		"/E/sxjj/res/layout/gamemission/GameMissionFightScene - 副本.json",
-		"/E/FTP/sftp-config.json",
 		"/E/FTP/res/config/webset.json"
 	],
 	"find":
@@ -162,6 +167,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"index.",
+				"index.html"
+			],
 			[
 				"zt",
 				"ztype.js"
