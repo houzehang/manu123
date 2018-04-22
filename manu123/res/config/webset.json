@@ -3,13 +3,13 @@
 		"title":"工 具",
 		"list":[
 			{"name":"Js代码工具","href":"https://tool.lu/js/"}
+			,{"name":"编辑Json","href":"https://www.bejson.com/jsoneditoronline/"}
 			,{"name":"Html代码工具","href":"https://tool.lu/html/"}
 			,{"name":"CSS动画","href":"http://www.yuangongju.com/animate"}
 			,{"name":"CSS生成按钮","href":"http://www.yuangongju.com/css3button"}
 			,{"name":"颜色转换","href":"http://www.yuangongju.com/color"}
 			,{"name":"字体图标库","href":"http://www.yuangongju.com/fonticon"}
 			,{"name":"文本对比","href":"http://www.jq22.com/textDifference"}
-			,{"name":"生成二维码","href":"http://www.yuangongju.com/qr"}
 			,{"name":"时间戳转换","href":"https://tool.lu/timestamp/"}
 		]
 	},
@@ -45,7 +45,6 @@
 		"title":"素 材",
 		"list":[
 			{"name":"爱给网","href":"http://www.aigei.com/"}
-			,{"name":"包图网","href":"http://ibaotu.com/"}
 			,{"name":"包图网","href":"http://ibaotu.com/"}
 		]
 	},
